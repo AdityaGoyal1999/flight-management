@@ -21,8 +21,8 @@ def book():
 
 @app.route("/complete_booking", methods=["POST"])
 def complete_booking():
-    origin = request.method.get("origin")
-    destination = request.method.get("destination")
+    origin = request.method.get("flight_origin")
+    destination = request.method.get("flight_destination")
 
     print(origin, destination, "PRINTED")
 

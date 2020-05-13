@@ -3,7 +3,7 @@
 <form action="{{ url_for('complete_booking') }}" method="post">
     <div class="form-group">
         <label for="exampleFormControlSelect1">FROM</label>
-        <select class="form-control" id="origin">
+        <select class="form-control" name="flight_origin">
         {% for flight in flights%}
             <option>{{ flight.origin }}</option>
         {% endfor %}
@@ -11,12 +11,14 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlSelect1">TO</label>
-        <select class="form-control" id="destination">
+        <select class="form-control" name="flight_destination">
         {% for flight in flights%}
             <option value="{{ flight.destination }}">{{ flight.destination }}</option>
         {% endfor %}
       </select>
     </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Book Flight</button>
+    </div>
 </form>
 {% endblock %}
