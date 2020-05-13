@@ -1,0 +1,8 @@
+{% extends "layout.html" %} {% block title %} All Flights {% endblock %} {%block body %}
+<h1>All available flights</h1>
+
+<ul>
+    {% for flight in flights %}
+    <li>{{flight.origin}} to {{flight.destination}}</li>
+</ul>
+{% endblock %}
