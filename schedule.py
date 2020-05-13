@@ -13,16 +13,19 @@ flights = db.execute("SELECT * FROM active_flights").fetchall()
 @app.route("/")
 def index():
 
-    return render_template("flights.html", flights=flights)
-
-@app.route("/book")
-def book():
     return render_template("booking.html", flights=flights)
 
-@app.route("/complete_booking", methods=["POST"])
-def complete_booking():
-    origin = request.method.get("flight_origin")
-    destination = request.method.get("flight_destination")
+# @app.route("/book")
+# def book():
+#     return render_template("booking.html", flights=flights)
 
-    print(origin, destination, "PRINTED")
+@app.route("/booking", methods=["POST"])
+def booking():
+    origin = request.form["flight_origin"]
+    destination = request.form["flight_destination"]
+
+    db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
+
+    return "{} {}".format(origin, destination)
+
 
