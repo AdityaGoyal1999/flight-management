@@ -13,7 +13,7 @@ flights = db.execute("SELECT * FROM active_flights").fetchall()
 @app.route("/")
 def index():
 
-    return render_template("booking.html", flights=flights)
+    return render_template("flights.html", flights=flights)
 
 # @app.route("/book")
 # def book():
@@ -25,13 +25,12 @@ def booking():
     destination = request.form["flight_destination"]
 
     message = "Your flight has been booked"
-
     try:
         db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
         db.commit()
     except:
         message = "There was an error in selecting the flight"
-    
+        
     return message
 
 if __name__ == "__main__":

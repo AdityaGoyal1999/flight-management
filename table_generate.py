@@ -13,7 +13,6 @@ def main():
     for command in commands:
         db.execute(command)
         print(command, "Executed")
-    db.commit()
 
 if __name__ == "__main__":
     main()
