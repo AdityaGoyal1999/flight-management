@@ -24,9 +24,17 @@ def booking():
     origin = request.form["flight_origin"]
     destination = request.form["flight_destination"]
 
-    db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
+    message = "Your flight has been booked"
 
-    return "UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination)
-    # return "{} {}".format(origin, destination)
+    try:
+        db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
+        db.commit()
+    except:
+        message = "There was an error in selecting the flight"
+    
+    return message
+
+if __name__ == "__main__":
+    index()
 
 
