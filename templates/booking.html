@@ -4,7 +4,6 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">FROM</label>
         <select class="form-control" name="flight_origin">
-        <!-- {% new_flights = set(flights) %} -->
         {% for flight in flights%}
             <option>{{ flight.origin }}</option>
         {% endfor %}
@@ -13,7 +12,6 @@
     <div class="form-group">
         <label for="exampleFormControlSelect1">TO</label>
         <select class="form-control" name="flight_destination">
-        <!-- {% new_flights = set(flights) %} -->
         {% for flight in flights%}
             <option value="{{ flight.destination }}">{{ flight.destination }}</option>
         {% endfor %}

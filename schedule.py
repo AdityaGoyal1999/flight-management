@@ -26,6 +26,7 @@ def booking():
 
     db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
 
-    return "{} {}".format(origin, destination)
+    return "UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination)
+    # return "{} {}".format(origin, destination)
 
 
