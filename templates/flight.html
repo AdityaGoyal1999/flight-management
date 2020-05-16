@@ -1,1 +1,4 @@
-{% extends "layout.html" %} {% block title %} {{flight.origin}} to {{flight.destination}} {% endblock %} {% block import%} {% endblock%} {%block body %} {% endblock %}
+{% extends "layout.html" %} {% block title %} {{flight.origin}} to {{flight.destination}} {% endblock %} {% block import%} {% endblock%} {%block body %}
+<h1>{{ flight.origin }} to {{ flight.destination }}</h1>
+
+{% endblock %}

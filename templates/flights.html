@@ -5,7 +5,7 @@
 <div class="container flight-contents">
     <ul>
         {% for flight in flights %}
-        <a href="{{ url_for('flight'}}">
+        <a href="{{ url_for('flight', id=flight.id) }}">
             <li>{{flight.origin}} to {{flight.destination}}</li>
         </a>
         {% endfor %}

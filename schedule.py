@@ -12,14 +12,19 @@ flights = db.execute("SELECT * FROM active_flights").fetchall()
 
 @app.route("/")
 def index():
-
+    flights = db.execute("SELECT * FROM active_flights").fetchall()
     return render_template("flights.html", flights=flights)
 
-@app.route("/flight/<str:origin>&<str:destination>")
-def flight_info(origin, destination):
+@app.route("/flights")
+def flights():
 
-    flight = fb.execute("SELECT * FROM active_flights WHERE ORIGIN=':origin' AND DESTINATION=':destination'",{"origin": origin, "destination": destination}).fetchone()
+    flights = db.execute("SELECT * FROM active_flights").fetchall()
+    return render_template("flights.html", flights=flights)
 
+@app.route("/flights/<int:id>")
+def flight(id):
+
+    flight = db.execute("SELECT * FROM active_flights WHERE id = :id", {"id": id}).fetchone()
     return render_template("flight.html", flight=flight)
 
 @app.route("/booking", methods=["POST"])
