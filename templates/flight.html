@@ -1,4 +1,7 @@
-{% extends "layout.html" %} {% block title %} {{flight.origin}} to {{flight.destination}} {% endblock %} {% block import%} {% endblock%} {%block body %}
+{% extends "layout.html" %} {% block title %} {{flight.origin}} to {{flight.destination}} {% endblock %} {% block import%}
+<link rel="Stylesheet" href="{{ url_for('static', filename='base.css') }}"> {% endblock%} {%block body %}
 <h1>{{ flight.origin }} to {{ flight.destination }}</h1>
-
+<div class="container flight-contents">
+    Origin : {{ flight.origin }} <br> Destination : {{ flight.destination }} <br>
+</div>
 {% endblock %}
