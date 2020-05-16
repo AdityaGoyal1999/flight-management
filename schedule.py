@@ -15,9 +15,12 @@ def index():
 
     return render_template("flights.html", flights=flights)
 
-# @app.route("/book")
-# def book():
-#     return render_template("booking.html", flights=flights)
+@app.route("/flight/<str:origin>&<str:destination>")
+def flight_info(origin, destination):
+
+    flight = fb.execute("SELECT * FROM active_flights WHERE ORIGIN=':origin' AND DESTINATION=':destination'",{"origin": origin, "destination": destination}).fetchone()
+
+    return render_template("flight.html", flight=flight)
 
 @app.route("/booking", methods=["POST"])
 def booking():
@@ -31,7 +34,7 @@ def booking():
     except:
         message = "There was an error in selecting the flight"
         
-    return message
+    return render_template("error.html", message=message)
 
 if __name__ == "__main__":
     index()
