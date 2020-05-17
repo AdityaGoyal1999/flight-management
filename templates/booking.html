@@ -1,24 +1,33 @@
-{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%} {% endblock %} {% block body %}
+{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%}
+<link rel="Stylesheet" href="{{ url_for('static', filename='base.css') }}"> {% endblock %} {% block body %}
 <h1>Book your flight</h1>
-<form action="{{ url_for('booking') }}" method="post">
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">FROM</label>
-        <select class="form-control" name="flight_origin">
-        {% for flight in flights%}
-            <option>{{ flight.origin }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">TO</label>
-        <select class="form-control" name="flight_destination">
-        {% for flight in flights%}
-            <option value="{{ flight.destination }}">{{ flight.destination }}</option>
-        {% endfor %}
-      </select>
-    </div>
-    <div class="form-group">
-        <input class="btn btn-primary" type="submit"></button>
-    </div>
-</form>
+<div class="container flight-contents">
+    <form action="{{ url_for('booking') }}" method="post">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">FROM</label>
+            <select class="form-control" name="flight_origin">
+            {% for flight in flights%}
+                <option>{{ flight.origin }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">TO</label>
+            <select class="form-control" name="flight_destination">
+            {% for flight in flights%}
+                <option value="{{ flight.destination }}">{{ flight.destination }}</option>
+            {% endfor %}
+        </select>
+        </div>
+        <div class="textInput form-group">
+            <label for="Name">Name</label><br>
+            <input type="text" name="usersname"><br>
+            <label for="Departure">Departure</label><br>
+            <input type="date" name="date">
+        </div>
+        <div class="form-group">
+            <input class="btn btn-primary" type="submit" value="Book flight">
+        </div>
+    </form>
+</div>
 {% endblock %}

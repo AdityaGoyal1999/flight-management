@@ -10,10 +10,12 @@ engine = create_engine("postgres://wmbcvvjiskfgau:e516ae997a2f8dfb1c29941e8fab81
 db = scoped_session(sessionmaker(bind=engine))
 flights = db.execute("SELECT * FROM active_flights").fetchall()
 
+
 @app.route("/")
 def index():
     flights = db.execute("SELECT * FROM active_flights").fetchall()
     return render_template("flights.html", flights=flights)
+
 
 @app.route("/flights")
 def flights():
@@ -21,25 +23,31 @@ def flights():
     flights = db.execute("SELECT * FROM active_flights").fetchall()
     return render_template("flights.html", flights=flights)
 
+
 @app.route("/flights/<int:id>")
 def flight(id):
 
     flight = db.execute("SELECT * FROM active_flights WHERE id = :id", {"id": id}).fetchone()
     return render_template("flight.html", flight=flight)
 
-@app.route("/booking", methods=["POST"])
-def booking():
-    origin = request.form["flight_origin"]
-    destination = request.form["flight_destination"]
 
-    message = "Your flight has been booked"
-    try:
-        db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
-        db.commit()
-    except:
-        message = "There was an error in selecting the flight"
+@app.route("/booking", methods=["POST", "GET"])
+def booking():
+    # origin = request.form["flight_origin"]
+    # destination = request.form["flight_destination"]
+
+    # message = "Your flight has been booked"
+    # try:
+    #     db.execute("UPDATE active_flights SET numPassengers = numPassengers + 1 WHERE origin = '{}' AND destination = '{}';".format(origin, destination))
+    #     db.commit()
+    # except:
+    #     message = "There was an error in selecting the flight"
         
-    return render_template("error.html", message=message)
+    # return render_template("error.html", message=message)
+    # return "Works"
+    flights = db.execute("SELECT * FROM active_flights;").fetchall()
+    return render_template("booking.html", flights=flights)
+
 
 if __name__ == "__main__":
     index()
