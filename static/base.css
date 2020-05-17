@@ -1,11 +1,9 @@
 body {
-    /* background-image: url('/static/images/flight.jpg');
-
-
+    background: url('/static/images/flight.jpg');
     /* background-image: url('/static/images/flight.jpg');
         background-repeat: no-repeat;
         background-size: auto; */
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 .flight-contents {
@@ -16,8 +14,4 @@ body {
 
 h1 {
     text-align: center;
-}
-
-#navItems {
-    float: right;
 }
