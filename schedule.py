@@ -46,7 +46,12 @@ def booking():
     # return render_template("error.html", message=message)
     # return "Works"
     flights = db.execute("SELECT * FROM active_flights;").fetchall()
-    return render_template("booking.html", flights=flights)
+    cities = set()
+    for flight in flights:
+        cities.add(flight.origin)
+        cities.add(flight.destination)
+    cities = list(cities)
+    return render_template("booking.html", cities=cities, message="Modal testing")
 
 
 @app.route("/book", methods=["POST"])
@@ -57,8 +62,11 @@ def book():
     date = request.form["date"] # getting in "2020-11-23" format of type string
 
     # TODO: need to commit these to the database
+    # TODO: activate the modal
+    db.execute("ALTER TABLE active_flights ADD COLUMN duration INTEGER;")
+    db.commit()
 
-    return "Your flight has been booked"
+    return render_template('message.html', heading="Success", message="Your flight has been booked")
 
 
 @app.route("/about")

@@ -1,20 +1,22 @@
-{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%} {% endblock %} {% block body %}
+{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%}
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/booking.js') }}"></script>
+{% endblock %} {% block body %}
 <h1>Book your flight</h1>
 <div class="container flight-contents">
     <form action="{{ url_for('book') }}" method="post">
         <div class="form-group">
             <label for="exampleFormControlSelect1">FROM</label>
             <select class="form-control" name="flight_origin">
-            {% for flight in flights%}
-                <option>{{ flight.origin }}</option>
+            {% for city in cities%}
+                <option>{{ city }}</option>
             {% endfor %}
         </select>
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">TO</label>
             <select class="form-control" name="flight_destination">
-            {% for flight in flights%}
-                <option value="{{ flight.destination }}">{{ flight.destination }}</option>
+            {% for city in cities%}
+                <option value="{{ city }}">{{ city }}</option>
             {% endfor %}
         </select>
         </div>
@@ -28,5 +30,14 @@
             <input class="btn btn-primary" type="submit" value="Book flight">
         </div>
     </form>
+</div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>{{ message }}</p>
+    </div>
+
 </div>
 {% endblock %}
