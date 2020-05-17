@@ -49,6 +49,23 @@ def booking():
     return render_template("booking.html", flights=flights)
 
 
+@app.route("/book", methods=["POST"])
+def book():
+    origin = request.form["flight_origin"]
+    destination = request.form["flight_destination"]
+    name = request.form["usersname"]
+    date = request.form["date"] # getting in "2020-11-23" format of type string
+
+    # TODO: need to commit these to the database
+
+    return "Your flight has been booked"
+
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
 if __name__ == "__main__":
     index()
 

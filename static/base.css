@@ -1,3 +1,13 @@
+body {
+    /* background-image: url('/static/images/flight.jpg');
+
+
+    /* background-image: url('/static/images/flight.jpg');
+        background-repeat: no-repeat;
+        background-size: auto; */
+    background-color: gray;
+}
+
 .flight-contents {
     border: 5px solid black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -6,4 +16,8 @@
 
 h1 {
     text-align: center;
+}
+
+#navItems {
+    float: right;
 }

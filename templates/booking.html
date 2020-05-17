@@ -1,8 +1,7 @@
-{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%}
-<link rel="Stylesheet" href="{{ url_for('static', filename='base.css') }}"> {% endblock %} {% block body %}
+{% extends "layout.html" %} {% block title %} Book flight {% endblock %} {% block import%} {% endblock %} {% block body %}
 <h1>Book your flight</h1>
 <div class="container flight-contents">
-    <form action="{{ url_for('booking') }}" method="post">
+    <form action="{{ url_for('book') }}" method="post">
         <div class="form-group">
             <label for="exampleFormControlSelect1">FROM</label>
             <select class="form-control" name="flight_origin">
